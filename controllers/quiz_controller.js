@@ -1,5 +1,6 @@
 var models = require('../models/models.js');
 
+
 // Autoload - factoriza el código si ruta inclute :quizId
 exports.load = function(req, res, next, quizId){
 	models.Quiz.find(quizId).then(
@@ -12,12 +13,13 @@ exports.load = function(req, res, next, quizId){
 	).catch(function(error) { next(error);});
 };
 
+
 // GET /quizes
 exports.index = function(req, res){
 	models.Quiz.findAll().then(function(quizes){
 		res.render('quizes/index', {quizes: quizes});
 	}).catch(function(error) { next(error);});
-};
+}
 
 // GET /quizes/:id
 exports.show = function(req, res){
@@ -31,7 +33,7 @@ exports.answer = function(req, res){
 	models.Quiz.find(req.params.quizId).then(function(quiz){
 		var resultado = 'Incorrecto';
 		if(req.query.respuesta === req.quiz.respuesta){
-			resultado = 'Correcoto';
+			resultado = 'Correcto';
 		}
 		res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
 	})
