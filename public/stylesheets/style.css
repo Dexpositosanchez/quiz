@@ -36,3 +36,8 @@ section > div{
 nav span{
 	margin:0px 10px 0px 0px;
 }
+
+form.filter{
+	text-align:left;
+	margin-bottom:20px;
+}
