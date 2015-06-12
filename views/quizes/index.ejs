@@ -20,6 +20,7 @@
 				<%= quizes[i].pregunta %>
 			</a>
 		</td>
+		<%if(session.user){%>
 		<td>
 			<a href="quizes/<%= quizes[i].id %>/edit">
 				<button>editar</button>
@@ -32,7 +33,10 @@
 				</button>
 			</form>
 		</td>
+		<%}%>
 	</tr>
 	<% } %>
 </table>
+<%if(session.user){%>
 <a class="create" href="/quizes/new"><button type="button">Crear pregunta</button></a>
+<%}%>
