@@ -34,11 +34,23 @@ app.use(function(req, res, next) {
     if(!req.path.match(/\/login|\/logout/)){
     	req.session.redir = req.path;
     }
-    
+    //Autologout por mas de dos minutos sin uso
+    if(req.session.user){
+    	var lastAction = new Date(req.session.lastAction);
+    	req.session.lastAction = new Date();
+    	var min = 60000;
+    	var dif=new Date().getTime() - lastAction.getTime();
+    	if(dif > min*2){
+    		req.session.expired = true;
+    		res.redirect('/logout');
+    	}
+    }
+    //req.session.expired = false;
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
     next();
 });
+
 
 app.use('/', routes);
 

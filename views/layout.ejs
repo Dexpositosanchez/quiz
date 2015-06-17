@@ -18,7 +18,10 @@
   		<header class="main" id="h1">
   		<%if(!session.user){%>
   			<span class="right"><a href="/login">Login</a></span>
-  		<%} else {%>
+  			<%if(session.expired){%>
+  				<span id='ErrorMsgs'>La sesión ha caducado</span>
+  				<%session.expired = false;%>
+  		<%}} else {%>
   			<span class="right"><%=session.user.username%><a href="/logout">Logout</a></span>
   		<%}%>
   			
