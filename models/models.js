@@ -45,6 +45,7 @@ Quiz.hasMany(Comment,{
 exports.Quiz = Quiz;
 exports.Comment = Comment; 
 exports.Sequelize = sequelize;//exportamos BD para estadísticas.
+exports.dialect = dialect;//Exportamos el tipo de BD porque SQlite no acepta booleanos
 
 // sequelize.sync() crea e inicializa tabla de preguntas en DV
 sequelize.sync().then(function(){
